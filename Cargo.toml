@@ -1,0 +1,85 @@
+[package]
+name = "oram"
+version = "0.1.0"
+authors = ["Advanca Authors"]
+edition = "2018"
+
+[dependencies]
+cfg-if = "0.1.10"
+
+# std 
+#XXX have to use 'rev' instead of 'tag'
+sgx_tstd = { rev = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git", features = ["untrusted_fs","net","backtrace"], optional = true }
+
+# rand
+rand = { version = "0.7" }
+rand_core = { version = "0.5" }
+#XXX have to use 'rev' instead of 'tag'
+sgx_rand = { rev = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
+
+# rusty-leveldb
+rusty-leveldb = { version = "0.3.0" }
+# TODO: use leveldb in sgx
+# rusty_leveldb_sgx = { tag = "sgx_1.1.1", git = "https://github.com/mesalock-linux/rusty_leveldb_sgx", package = "rusty-leveldb", optional = true }
+
+# blake2
+blake2 = { version = "0.8.1" }
+blake2_sgx = { tag = "sgx_1.1.1", git = "https://github.com/mesalock-linux/rustcrypto-hashes-sgx", package = "blake2", optional = true }
+
+# serde
+serde = { version = "1.0", features = ["derive"] }
+bincode = { version = "1.2.1" }
+#XXX: don't add 'rev' or 'tag' for serde_sgx
+serde_sgx = { git = "https://github.com/mesalock-linux/serde-sgx", package = "serde", optional = true }
+serde_derive_sgx = { tag = "sgx_1.1.1", git = "https://github.com/mesalock-linux/serde-sgx", package = "serde_derive", optional = true }
+bincode_sgx = { tag = "sgx_1.1.1", git = "https://github.com/mesalock-linux/bincode-sgx", package = "bincode", optional = true }
+
+# log
+log = { version = "0.4" }
+log_sgx = { tag = "sgx_1.1.1", git = "https://github.com/mesalock-linux/log-sgx", package = "log", optional = true }
+
+# protected fs
+protected_fs_rs = { tag = "sgx_1.1.1", git = "https://github.com/mesalock-linux/protected_fs_rs.git", optional = true }
+
+hex_sgx = { tag = "sgx_1.1.1", git = "https://github.com/mesalock-linux/rust-hex-sgx", package = "hex", optional = true }
+
+[dev-dependencies]
+hex = "0.4.2"
+env_logger = "0.7.1"
+criterion = "0.3"
+serde_test = "1.0"
+
+[[bench]]
+name = "read_write"
+harness = false
+
+[profile.bench]
+debug = true
+
+# enable this when profiling
+# [profile.release]
+# debug = true
+
+[features]
+# default with std for develpoment
+default = ["std"] 
+
+# used for conditional compilation in source code
+std = []
+
+# usage 1: used for conditional compilication in source code
+# usage 2: allow sgx-specific crates to be 'optional' in feature 'std'
+# Simply select 'default' feature to include these packages.
+sgx = [
+    "sgx_tstd/default",
+    "sgx_rand/default",
+    # TODO: use leveldb in sgx
+    # "rusty_leveldb_sgx/default",
+    "blake2_sgx/default",
+    "serde_sgx/default",
+    "serde_derive_sgx/default", 
+    "bincode_sgx/default",
+    "log_sgx/default",
+    "protected_fs_rs/mesalock_sgx",
+    "hex_sgx/default"
+]

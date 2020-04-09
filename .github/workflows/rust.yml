@@ -1,0 +1,33 @@
+name: Rust
+
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: install stable toolchain and other components
+      uses: actions-rs/toolchain@v1.0.5
+      with:
+        profile: minimal
+        components: rustfmt, clippy
+    - name: format check
+      run: |
+        cargo fmt -- --check
+        cargo fmt --manifest-path examples/sgx/app/Cargo.toml -- --check
+        cargo fmt --manifest-path examples/sgx/enclave/Cargo.toml -- --check
+    - name: linter
+      run: cargo clippy
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: install stable toolchain and other components
+      uses: actions-rs/toolchain@v1.0.5
+    - name: run unit test
+      run: cargo test

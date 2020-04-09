@@ -1,0 +1,21 @@
+[package]
+name = "Helloworldsampleenclave"
+version = "1.0.0"
+authors = ["The Teaclave Authors"]
+edition = "2018"
+
+[lib]
+name = "helloworldsampleenclave"
+crate-type = ["staticlib"]
+
+[dependencies]
+oram = { path = "../../../", default-features = false, features = ["sgx"] }
+
+[features]
+default = []
+
+[target.'cfg(not(target_env = "sgx"))'.dependencies]
+sgx_types = { rev = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+sgx_tstd = { rev = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git", features = ["backtrace"] }
+sgx_trts = { rev = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+

@@ -1,0 +1,10 @@
+[package]
+name = "app"
+version = "1.0.0"
+authors = ["The Teaclave Authors"]
+build = "build.rs"
+
+[dependencies]
+sgx_types = { tag = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+sgx_urts = { tag = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git" }
+
