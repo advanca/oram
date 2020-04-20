@@ -1,5 +1,7 @@
 # oram
 
+![](https://github.com/advanca/oram/workflows/Rust/badge.svg)
+
 A rust implementation of ORAM storage in Intel SGX.
 
 Currently available algorithms:

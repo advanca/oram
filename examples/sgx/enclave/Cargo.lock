@@ -80,7 +80,7 @@ checksum = "e3b5ca7a04898ad4bcd41c90c5285445ff5b791899bb1b0abdd2a2aa791211d7"
 [[package]]
 name = "byteorder"
 version = "1.3.2"
-source = "git+https://github.com/mesalock-linux/byteorder-sgx#d8fd3a1feea0b2d14295d163dbe6e47c8cfe8e83"
+source = "git+https://github.com/mesalock-linux/byteorder-sgx.git#d8fd3a1feea0b2d14295d163dbe6e47c8cfe8e83"
 dependencies = [
  "sgx_tstd",
 ]
@@ -157,7 +157,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b480f641ccf0faf324e20c1d3e53d81b7484c698b42ea677f6907ae4db195371"
 dependencies = [
  "errno-dragonfly",
- "libc 0.2.68",
+ "libc 0.2.69",
  "winapi",
 ]
 
@@ -168,7 +168,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "14ca354e36190500e1e1fb267c647932382b54053c50b14970856c0b00a35067"
 dependencies = [
  "gcc",
- "libc 0.2.68",
+ "libc 0.2.69",
 ]
 
 [[package]]
@@ -193,7 +193,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7abc8dd8451921606d809ba32e95b6111925cd2906060d2dcc29c070220503eb"
 dependencies = [
  "cfg-if",
- "libc 0.2.68",
+ "libc 0.2.69",
  "wasi",
 ]
 
@@ -226,9 +226,18 @@ source = "git+https://github.com/mesalock-linux/libc-sgx#b718c0bdf0cf19764559586
 
 [[package]]
 name = "libc"
-version = "0.2.68"
+version = "0.2.69"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dea0c0405123bba743ee3f91f49b1c7cfb684eef0da0a50110f758ccf24cdff0"
+checksum = "99e85c08494b21a9054e7fe1374a732aeadaff3980b6990b94bfd3a70f690005"
+
+[[package]]
+name = "log"
+version = "0.4.8"
+source = "git+https://github.com/mesalock-linux/log-sgx?tag=sgx_1.1.1#554a65180046af5a901d7233f3cf4693d58d3394"
+dependencies = [
+ "cfg-if",
+ "sgx_tstd",
+]
 
 [[package]]
 name = "log"
@@ -237,15 +246,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "14b6052be84e6b71ab17edffc2eeabf5c2c3ae1fdb464aae35ac50c67a44e1f7"
 dependencies = [
  "cfg-if",
-]
-
-[[package]]
-name = "log"
-version = "0.4.10"
-source = "git+https://github.com/mesalock-linux/log-sgx?tag=sgx_1.1.1#d4ff761c1f92d5a4650fe0ee6e75f203594923ca"
-dependencies = [
- "cfg-if",
- "sgx_tstd",
 ]
 
 [[package]]
@@ -264,8 +264,8 @@ dependencies = [
  "blake2 0.8.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "cfg-if",
  "hex",
- "log 0.4.10",
- "log 0.4.8",
+ "log 0.4.8 (git+https://github.com/mesalock-linux/log-sgx?tag=sgx_1.1.1)",
+ "log 0.4.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "protected_fs_rs",
  "rand",
  "rand_core 0.5.1",
@@ -322,7 +322,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a6b1679d49b24bbfe0c803429aa1874472f50d9b363131f0e89fc356b544d03"
 dependencies = [
  "getrandom",
- "libc 0.2.68",
+ "libc 0.2.69",
  "rand_chacha",
  "rand_core 0.5.1",
  "rand_hc",
@@ -379,7 +379,7 @@ dependencies = [
  "crc",
  "errno",
  "integer-encoding",
- "libc 0.2.68",
+ "libc 0.2.69",
  "rand",
  "snap",
 ]
@@ -545,9 +545,9 @@ dependencies = [
 
 [[package]]
 name = "typenum"
-version = "1.11.2"
+version = "1.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6d2783fe2d6b8c1101136184eb41be8b1ad379e4657050b8aaff0c79ee7575f9"
+checksum = "373c8a200f9e67a0c95e62a4f52fbf80c23b4381c05a17845531982fa99e6b33"
 
 [[package]]
 name = "unicode-xid"
