@@ -1,3 +1,4 @@
 [submodule "examples/sgx/rust-sgx-sdk"]
 	path = examples/sgx/rust-sgx-sdk
 	url = https://github.com/apache/incubator-teaclave-sgx-sdk.git
+	shallow = true
