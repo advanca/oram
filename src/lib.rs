@@ -25,7 +25,6 @@ cfg_if! {
         use serde_sgx::{Serialize, Deserialize};
         use serde_sgx::ser::{Serializer, SerializeTuple};
         use serde_sgx::de::{self as de, Deserializer, Visitor,  SeqAccess};
-        use serde_derive_sgx::*;
         use blake2_sgx::{VarBlake2b, digest::{Input, VariableOutput}};
     } else if #[cfg(feature = "std")] {
         use rand::{Rng, thread_rng};
