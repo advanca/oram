@@ -16,9 +16,13 @@
 
 use cfg_if::cfg_if;
 
+#[cfg(feature = "sgx")]
+#[macro_use]
+extern crate sgx_tstd as std;
+
 cfg_if! {
     if #[cfg(feature = "sgx")] {
-        use sgx_tstd::{prelude::v1::*, self as std};
+        use sgx_tstd::{prelude::v1::*};
         use sgx_rand::{Rng, thread_rng};
         use log_sgx::{trace};
         use bincode_sgx::{serialize, deserialize};
